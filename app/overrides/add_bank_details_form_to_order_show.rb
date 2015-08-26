@@ -1,5 +1,5 @@
 Deface::Override.new(
-  :virtual_path => 'spree/frontend/app/views/spree/shared/_order_details',
+  :virtual_path => 'spree/shared/_order_details',
   :name => 'add_bank_details_form_to_order_show',
   :insert_bottom => ".payment-info",
   :text => %q{
@@ -8,7 +8,7 @@ Deface::Override.new(
         <br>
         <%= link_to Spree.t(:add_details), "javascript:void(0);", :class => 'button add_bt_details' %>
       <% end %>
-      <%= form_for bank_transfer_payment, :html => { :class => "bt_payment_form #{bank_transfer_payment.details_submitted? ? '' : 'hidden'}" } do |f| %>
+      <%= form_for bank_transfer_payment do |f| %>
         <table>
           <tr>
             <td><%= Spree.t(:deposited_on) %></td><td><%= f.text_field :deposited_on, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field', 'field-name' => 'Deposited on' %></td>
