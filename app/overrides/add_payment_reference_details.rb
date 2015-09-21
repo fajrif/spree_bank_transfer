@@ -42,6 +42,19 @@ Deface::Override.new(
                 <%= bank_transfer_payment.transaction_reference_no %>
               </td>
             </tr>
+            <tr>
+              <td>
+                <strong><%= Spree.t(:receipt_img) %>:</strong>
+              </td>
+              <td>
+                <% unless bank_transfer_payment.receipt_img.blank? %>
+                  <a  class="image-popup-no-margins" href=" <%= bank_transfer_payment.receipt_img.url(:medium) %>" >
+                   <%= image_tag bank_transfer_payment.receipt_img.url(:thumb), :class => "img-polaroid" %>
+                <% end %>
+                 <% unless bank_transfer_payment.receipt_img.blank? %>
+                <% end %>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

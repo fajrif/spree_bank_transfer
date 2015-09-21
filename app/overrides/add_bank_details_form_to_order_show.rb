@@ -22,6 +22,10 @@ Deface::Override.new(
           <tr>
             <td><%= Spree.t(:transaction_reference_no) %></td><td><%= f.text_field :transaction_reference_no, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field', 'field-name' => 'Transaction Reference No.' %></td>
           </tr>
+          <tr>
+            <td><%= Spree.t(:transaction_reference_no) %></td><td><%= f.file_field :receipt_img, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field', 'field-name' => 'upload receipt' %></td>
+          </tr>
+
         </table>
         <br>
         <% unless bank_transfer_payment.details_submitted? %>
