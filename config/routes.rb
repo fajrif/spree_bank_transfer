@@ -6,5 +6,4 @@ Spree::Core::Engine.routes.draw do
     end
   end
   resources :payments, :only => :update
-  get '/content/bank_transfer', :to => 'content#bank_transfer', :as => :bank_transfer_instructions
 end
