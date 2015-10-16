@@ -1,5 +1,53 @@
 <% if (banks = Spree::Bank.active).any? %>
-  <table>
+  <p>
+    <a href="#" data-toggle='modal' data-target='#bankTransferModal'><%= Spree.t(:how_bank_transfer_works) %></a>
+  </p>
+  <div class="modal fade" id="bankTransferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><%= Spree.t(:how_bank_transfer_works) %></h4>
+        </div>
+        <div class="modal-body">
+          <b>Steps:</b>
+            <ol>
+              <p><strong>1. Deposit order total in one of the below mentioned bank accounts.</strong> After this payment a payment reference number will be provided by the bank.</p>
+              <div style="padding:20px 0">
+                <table border="1" width="100%" style="border-collapse: inherit;border-spacing: 2px;">
+                  <tr>
+                    <th><%= Spree.t(:bank_name) %></th>
+                    <th><%= Spree.t(:account_no) %></th>
+                    <th><%= Spree.t(:additional_details) %></th>
+                  </tr>
+                  <% banks.each do |bank| %>
+                    <tr>
+                    <td><center><%= bank.name %></center></td>
+                    <td><center><%= bank.account_no %></center></td>
+                    <td><center><%= bank.additional_details %></center></td>
+                  </tr>
+                <% end %>
+                </table>
+              </div>
+            </ol>
+            <ol>
+              <p><strong>2. Enter this payment reference number on Order Details page by following steps:</strong></p>
+              <ol>
+                <p>1. Go to "My Account" page.</p>
+                <p>2. Select Order for which you want to provide details.</p>
+                <p>3. Click on "Add Details" link visible in "Payment Information" column.</p>
+                <p>4. Provide payment details and Submit.</p>
+              </ol>
+              <p><%= image_tag 'payment_details.png' %></p>
+            </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table border="1" width="100%" style="border-collapse: inherit;border-spacing: 2px;">
     <tr>
       <th><%= Spree.t(:bank_name) %></th>
       <th><%= Spree.t(:account_no) %></th>
