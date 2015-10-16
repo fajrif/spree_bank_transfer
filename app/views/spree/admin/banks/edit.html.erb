@@ -1,14 +1,22 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
 <% content_for :page_title do %>
   <%= Spree.t(:editing_resource, resource: Spree::Bank.model_name.human) %> / <%= @bank.name %>
 <% end %>
 
-<%= render :partial => 'spree/admin/shared/error_messages', :locals => { :target => @bank } %>
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_banks_list), spree.admin_banks_path, :class => 'btn btn-primary' %>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @bank } %>
 
 <%= form_for @bank, :url => admin_bank_path(@bank) do |f| %>
-  <fieldset>
-    <%= render :partial => 'form', :locals => { :f => f } %>
-    <div data-hook="buttons" class="actions">
-      <%= button Spree.t('actions.update'), 'save' %>
-    </div>
-  </fieldset>
+  <div class="alpha ten columns" data-hook="admin_banks_fields">
+    <fieldset class="no-border-bottom">
+      <legend align="center"><%= Spree.t(:banks)%></legend>
+      <%= render :partial => 'form', :locals => { :f => f } %>
+    </fieldset>
+  </div>
+  <div class="clear"></div>
+  <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
 <% end %>

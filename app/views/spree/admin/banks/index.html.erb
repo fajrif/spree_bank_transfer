@@ -1,39 +1,39 @@
-<%= render :partial => 'spree/admin/shared/sub_menu/configuration' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::Bank) %>
+  <%= Spree.t(:banks) %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_bank), new_object_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_bank_link' %>
+  <li>
+    <%= button_link_to Spree.t(:new_bank), new_object_url, class: 'btn-success', icon: 'plus' %>
+  </li>
+  <li>
+    <%= button_link_to Spree.t(:general_settings), spree.edit_admin_general_settings_path, icon: 'arrow-left' %>
+  </li>
 <% end %>
 
 <% if @banks.any? %>
-
-  <table class="table" id='listing_banks'>
+  <table class="index" id='listing_banks'>
     <thead>
       <tr data-hook="admin_banks_index_headers">
         <th><%= Spree.t(:bank_name) %></th>
         <th><%= Spree.t(:account_no) %></th>
         <th><%= Spree.t(:additional_details) %></th>
         <th><%= Spree.t(:status) %></th>
+        <th data-hook="admin_merchants_index_header_actions" class="actions"></th>
       </tr>
     </thead>
     <tbody>
       <% @banks.each do |bank|%>
-        <tr id="<%= spree_dom_id bank %>" data-hook="admin_banks_index_rows">
+        <tr id="<%= spree_dom_id bank %>" data-hook="admin_banks_index_rows" class="<%= cycle('odd', 'even')%>">
           <td><%= bank.name %></td>
           <td><%= bank.account_no %></td>
           <td><%= bank.additional_details %></td>
-          <td id='active-status-<%= bank.id %>'><%= bank_status(bank) %></td>
-          <td data-hook="admin_banks_index_row_status" id='toggle-status-<%= bank.id %>' class="actions actions-2 text-right">
-            <% action_class = bank.active ? "btn-danger" : "btn-success" %>
-            <% btn_class = 'btn ' + action_class + ' btn-sm' %>
-            <% status = bank.active ? "active" : "inactive" %>
-            <% bank_id = 'bank-' + bank[:id].to_s %>
-            <%= link_to_with_icon(action_text_to_toggle_bank_status(bank), action_to_toggle_bank_status(bank), toggle_activation_admin_bank_path(bank), {:class => btn_class, :id => bank_id, :rel => status, :remote => true, :method => :put}) %>
+          <td id='toggle-status-<%= bank.id %>'>
+            <%= link_to_with_icon(action_text_to_toggle_bank_status(bank), action_to_toggle_bank_status(bank), toggle_activation_admin_bank_path(bank), {:remote => true, :method => :put}) %>
           </td>
-          <td data-hook="admin_banks_index_row_actions" class="actions actions-2 text-right">            
+          <td data-hook="admin_banks_index_row_actions" class="actions actions-2 text-right">
             <%= link_to_edit(bank, :no_text => true) if can? :edit, bank %>
             <%= link_to_delete(bank, :no_text => true) if can? :delete, bank %>
           </td>
@@ -43,8 +43,8 @@
   </table>
 
 <% else %>
-  <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Bank)) %>,
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: Spree.t(:banks)) %>,
     <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::Bank %>!
   </div>
 <% end %>
