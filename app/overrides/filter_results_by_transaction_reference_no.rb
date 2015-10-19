@@ -19,11 +19,3 @@ Deface::Override.new(
     </div>
   }
 )
-
-
-
-
-
-
-
-
