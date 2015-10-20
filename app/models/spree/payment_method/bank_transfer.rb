@@ -30,6 +30,10 @@ module Spree
     def credit(money, credit_card, response_code, options = {})
       ActiveMerchant::Billing::Response.new(true, "", {}, {})
     end
+
+    def payment_profiles_supported?
+      true
+    end
   end
 
 end
