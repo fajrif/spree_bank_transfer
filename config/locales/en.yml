@@ -1,5 +1,6 @@
 en:
   spree:
+    account_name: Account Name
     account_no: Account No
     add_details: Add details
     additional_details: Additional Details

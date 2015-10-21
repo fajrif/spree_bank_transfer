@@ -20,13 +20,21 @@
       </tr>
       <tr class="odd">
         <td>
+          <strong><%= Spree.t(:account_name) %></strong>
+        </td>
+        <td>
+          <%= bank_transfer_payment.account_name %>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
           <strong><%= Spree.t(:account_no) %></strong>
         </td>
         <td>
           <%= bank_transfer_payment.account_no %>
         </td>
       </tr>
-      <tr class="even">
+      <tr class="odd">
         <td>
           <strong><%= Spree.t(:transaction_reference_no) %></strong>
         </td>
@@ -34,7 +42,7 @@
           <%= bank_transfer_payment.transaction_reference_no %>
         </td>
       </tr>
-      <tr class="odd">
+      <tr class="even">
         <td>
           <strong><%= Spree.t(:receipt_img) %></strong>
         </td>

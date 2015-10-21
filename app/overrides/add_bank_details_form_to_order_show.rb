@@ -16,6 +16,9 @@ Deface::Override.new(
             <td><%= Spree.t(:bank_name) %></td><td><%= f.text_field :bank_name, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field' %></td>
           </tr>
           <tr>
+            <td><%= Spree.t(:account_name) %></td><td><%= f.text_field :account_name, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field' %></td>
+          </tr>
+          <tr>
             <td><%= Spree.t(:account_no) %></td><td><%= f.text_field :account_no, :disabled => bank_transfer_payment.details_submitted?, :class => 'required_field' %></td>
           </tr>
           <tr>
