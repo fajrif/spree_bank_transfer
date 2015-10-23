@@ -5,5 +5,4 @@ Spree::Core::Engine.routes.draw do
       put :toggle_activation, :on => :member
     end
   end
-  resources :payments, :only => :update
 end
